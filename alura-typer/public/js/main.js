@@ -2,14 +2,14 @@ const tempoInicial = $('#tempo-digitacao').text();
 const campo = $('#campo');
 var frase = $('.frase').text();
 
-function iniciaMarcadores() {
-  campo.on('input', function() {
-    var digitado = campo.val();
-    var correto = frase.startsWith(digitado);
-    campo.toggleClass('borda-verde', correto);
-    campo.toggleClass('borda-vermelha', !correto);
-  });
-}
+$(document).ready(() => {
+  $('#botao-reiniciar').attr('disabled', true);
+  atualizaTamanhoFrase();
+  iniciaContadores();
+  iniciaCronometro();
+  iniciaMarcadores();
+  $('#botao-reiniciar').on('click', reiniciaJogo);
+});
 
 function atualizaTamanhoFrase() {
   const tamanhoFrase = frase.split(' ').length;
@@ -26,8 +26,7 @@ function iniciaContadores() {
 }
 
 function iniciaCronometro() {
-  
-  campo.on('focus', function() {
+  campo.one('focus', function() {
     var tempoRestante = tempoInicial;
     var cronometroID = setInterval(function() {
         tempoRestante--;
@@ -40,6 +39,15 @@ function iniciaCronometro() {
   });
 }
 
+function iniciaMarcadores() {
+  campo.on('input', function() {
+    var digitado = campo.val();
+    var correto = frase.startsWith(digitado);
+    campo.toggleClass('borda-verde', correto);
+    campo.toggleClass('borda-vermelha', !correto);
+  });
+}
+
 function finalizaJogo() {
   campo.attr('disabled', true);
   campo.toggleClass('campo-desativado');
@@ -47,7 +55,7 @@ function finalizaJogo() {
   inserePlacar();
 }
 
- function reiniciaJogo(){
+ function reiniciaJogo() {
   $('#botao-reiniciar').attr('disabled', true);
    campo.attr('disabled',false);
    campo.val('');
@@ -55,16 +63,7 @@ function finalizaJogo() {
    $('#contador-caracteres').text('0');
    $('#tempo-digitacao').text(tempoInicial);
    iniciaCronometro();
-   campo.toggleClass('campo-desativado');
+   campo.removeClass('campo-desativado');
    campo.removeClass('borda-vermelha');
    campo.removeClass('borda-verde');
  }
-
-$(document).ready(() => {
-  $('#botao-reiniciar').attr('disabled', true);
-  atualizaTamanhoFrase();
-  iniciaContadores();
-  iniciaCronometro();
-  iniciaMarcadores();
-  $('#botao-reiniciar').on('click', reiniciaJogo);
-});

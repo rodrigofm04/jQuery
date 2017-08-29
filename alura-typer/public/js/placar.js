@@ -1,14 +1,27 @@
+$('#botao-placar').click(mostraPlacar);
+
+function mostraPlacar() {
+  $('.placar').stop().slideToggle(600);
+}
+
 function inserePlacar() {
     var corpoTabela = $('.placar').find('tbody');
-    console.log(corpoTabela);
     var usuario = $('#nome-usuario').val();
     var numPalavras = $('#contador-palavras').text();
     var linha = novaLinha(usuario, numPalavras);
     linha.find(".botao-remover").click(removeLinha);
-  
-    corpoTabela.append(linha);
+    corpoTabela.prepend(linha);
+    scrollPlacar();
   }
   
+  function scrollPlacar() {
+    $(".placar").slideDown(500);
+    var posicaoPlacar = $('.placar').offset().top;
+    $('body'). animate({
+      scrollTop: posicaoPlacar+'px'
+    }, 1000);
+    
+  }
   function novaLinha(usuario, numPalavras){
     var linha = $('<tr>');
     var colunaUsuario = $('<td>').text(usuario);
@@ -29,5 +42,9 @@ function inserePlacar() {
   
   function removeLinha(event) {
     event.preventDefault();
-    $(this).parent().parent().remove();
+    var linha = $(this).parent().parent();
+    linha.fadeOut(600);
+    setInterval(function () {
+      linha.remove();
+    }, 600);
   }

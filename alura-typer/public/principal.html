@@ -18,44 +18,38 @@
             </li>
             <li>
                 <i class="small material-icons icones">query_builder</i>
-                <span id="tempo-digitacao">9</span> segundos
+                <span id="tempo-digitacao">5</span> segundos
             </li>
         </ul>
         <label for="nome-usuario">Usuário:</label>
         <input type="text" id="nome-usuario">
         <textarea id="campo" cols="30" rows="10"></textarea>
         <div class="botoes">
-            <a id="botao-reiniciar" class="btn-floating btn-large waves-effect waves-light red">
+            <a id="botao-reiniciar" class="btn-floating btn-medium waves-effect waves-light red">
                 <i class="material-icons">restore</i>
+            </a>
+            <a id="botao-placar" class="btn-floating btn-medium waves-effect waves-light green">
+                <i class="material-icons">assignment</i>
             </a>
         </div>
         <ul class="center">
             <li><span id="contador-caracteres">0</span> caracteres</li>
             <li><span id="contador-palavras">0</span> palavras</li>
         </ul>
+        <section class="placar">
+            <h3 class="center">Placar</h3>
+            <table class="centered bordered">
+                <thead>
+                    <tr>
+                        <th id="col-usuario">Usuário</th>
+                        <th id="col-palavras">No. de palavras</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>                
+            </table>
+        </section>
     </div>
-    <section class="container placar">
-        <h3 class="center">Placar</h3>
-        <table class="centered bordered">
-            <thead>
-                <tr>
-                    <th id="col-usuario">Usuário</th>
-                    <th id="col-palavras">No. de palavras</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- <tr>
-                    <td>fulano</td>
-                    <td>10</td>
-                    <td>
-                        <a class="botao-remover" href="#">
-                            <i class="small material-icons">delete</i>
-                        </a>
-                    </td>
-                </tr> -->
-            </tbody>                
-        </table>
-    </section>
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
     <script src="js/placar.js"></script>
