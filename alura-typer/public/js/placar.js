@@ -47,4 +47,4 @@ function inserePlacar() {
     setInterval(function () {
       linha.remove();
     }, 600);
-  }
+ }

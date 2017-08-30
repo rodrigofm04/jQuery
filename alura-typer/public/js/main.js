@@ -1,6 +1,5 @@
-const tempoInicial = $('#tempo-digitacao').text();
-const campo = $('#campo');
-var frase = $('.frase').text();
+var tempoInicial = $('#tempo-digitacao').text();
+var campo = $('#campo');
 
 $(document).ready(() => {
   $('#botao-reiniciar').attr('disabled', true);
@@ -12,9 +11,15 @@ $(document).ready(() => {
 });
 
 function atualizaTamanhoFrase() {
+  var frase = $('.frase').text();
   const tamanhoFrase = frase.split(' ').length;
-  const numeroPalavras = $('#numero-palavras');
+  const numeroPalavras = $('#tamanho-frase');
   numeroPalavras.text(tamanhoFrase);
+}
+
+function atualizaTempoInicial(tempo) {
+  tempoInicial = tempo;
+  $("#tempo-digitacao").text(tempo);
 }
 
 function iniciaContadores() {
@@ -41,6 +46,7 @@ function iniciaCronometro() {
 
 function iniciaMarcadores() {
   campo.on('input', function() {
+    var frase = $('.frase').text();
     var digitado = campo.val();
     var correto = frase.startsWith(digitado);
     campo.toggleClass('borda-verde', correto);
@@ -59,6 +65,7 @@ function finalizaJogo() {
   $('#botao-reiniciar').attr('disabled', true);
    campo.attr('disabled',false);
    campo.val('');
+   $('#nome-usuario').val('');
    $('#contador-palavras').text('0');
    $('#contador-caracteres').text('0');
    $('#tempo-digitacao').text(tempoInicial);
